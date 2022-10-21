@@ -1,4 +1,5 @@
 import check
+import sqltables
 
 import pickle
 import mysql.connector
@@ -42,6 +43,7 @@ def querycheck():
             print("Connection established successfully.")
             with open("firsttime.txt","w") as f:
                 f.write("False")
+                sqltables.tables()
                 ans=True
         
     if not ans:
