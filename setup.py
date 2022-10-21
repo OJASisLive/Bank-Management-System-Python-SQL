@@ -170,25 +170,3 @@ def setup():
     else: 
         if querycheck():
             connectionquery()
-
-"""def tables():
-    conn=setup()
-    cursor=conn.cursor()
-    for table_name in TABLES:
-        table_description = TABLES[table_name]
-        try:
-            print("Creating table {}: ".format(table_name), end='')
-            cursor.execute(table_description)
-        except mysql.connector.Error as err:
-            if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-                print("already exists.")
-            else:
-                print(err.msg)
-        else:
-            print("OK")"""
-            
-
-##################################################################################################
-#Links
-#https://education.github.com/git-cheat-sheet-education.pdf
-#https://dev.mysql.com/doc/connector-python/en/connector-python-example-ddl.html
