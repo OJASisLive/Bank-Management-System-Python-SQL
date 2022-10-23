@@ -1,3 +1,3 @@
 import setup
-
-connection=setup.setup()
+def getconnection():
+    return setup.setup()

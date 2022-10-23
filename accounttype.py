@@ -1,3 +1,4 @@
+import adminpanel
 def acctype():
     while True:
         print("--------------Account Selector Menu--------------")
@@ -10,7 +11,7 @@ def acctype():
         if a=='1':
             b=input("\nEnter admin password:")
             if b=="admin123":
-                return 1
+                adminpanel.ap()
             else:
                 print("\nWrong password!\n") 
             
