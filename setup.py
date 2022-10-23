@@ -8,7 +8,7 @@ existing=0
 TABLES = {}
 TABLES['employees'] = (
     "CREATE TABLE `employees` ("
-    "  `emp_no` int(5) NOT NULL AUTO_INCREMENT,"
+    "  `emp_no` int(5) NOT NULL ,"
     "  `birth_date` date NOT NULL,"
     "  `first_name` varchar(15) NOT NULL,"
     "  `last_name` varchar(15) NOT NULL,"
@@ -20,7 +20,7 @@ TABLES['employees'] = (
 
 TABLES['clients'] = (
     "CREATE TABLE `clients` ("
-    "  `acc_no` int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
+    "  `acc_no` int(5) NOT NULL PRIMARY KEY,"
     "  `acc_type` enum('S','C') NOT NULL,"
     "  `first_name` varchar(15) NOT NULL,"
     "  `last_name` varchar(15) NOT NULL,"
