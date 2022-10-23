@@ -4,7 +4,7 @@ import pickle
 import mysql.connector
 
 from mysql.connector import errorcode
-
+existing=0
 TABLES = {}
 TABLES['employees'] = (
     "CREATE TABLE `employees` ("
@@ -109,6 +109,7 @@ def connectionquery():
     return query
 
 def querycheck():
+    global existing
     conn=connectionquery()
     ans=False
     if conn!="":
@@ -125,6 +126,7 @@ def querycheck():
                     except mysql.connector.Error as err:
                         if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
                             print("already exists.")
+                            existing+=1
                         else:
                             print(err.msg)
                     else:
@@ -151,6 +153,7 @@ def mysqlsetup():
     querycheck()
 
 def setup():
+    global existing
     while check.check():
         print("\n\n-----------------Welcome to the Project!!!-------------------")
         print("This is the setup process which runs when the user uses the program for the first time.")
@@ -163,6 +166,10 @@ def setup():
             break
         if ans2=="1":
             mysqlsetup()
+            if existing==6:
+                with open("firsttime.txt","w") as f:
+                    f.write("False")
+                continue
         if ans2=="2":
             print("\nThis is under development :). Please use mysql till then...")
         elif ans2 != "1" or ans2 != "2":
