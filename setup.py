@@ -14,7 +14,6 @@ TABLES['employees'] = (
     "  `last_name` varchar(15) NOT NULL,"
     "  `gender` enum('M','F') NOT NULL,"
     "  `hire_date` date NOT NULL,"
-    "  `age` int(2) NOT NULL,"
     "  PRIMARY KEY (`emp_no`)"
     ") ")
 

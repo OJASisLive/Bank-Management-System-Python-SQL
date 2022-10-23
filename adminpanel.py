@@ -1,8 +1,14 @@
 from datetime import date
-from traceback import format_exc, format_exception
+
+def age(birthdate):
+    today = date.today()
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    return age
 
 def ap1():
     print("-------------Hire Employee Process-------------")
+
+#Employee number
     while True:
         emp_no=input("Enter emp_no (max 5 int): ")
         if len(emp_no) <= 5:
@@ -15,7 +21,7 @@ def ap1():
                 break
         else:
             print("Maximum length is 5!")
-
+#Employee Birth date
     while True:
         while True:
             year=input("Enter birth year (4 int): ")
@@ -58,11 +64,15 @@ def ap1():
 
         try:
             birth_date=date(year,month,day)
-            break
         except ValueError:
             import traceback
-            traceback.print_exc
-            
+            traceback.print_exc()
+        else:
+            if age(birth_date)>=20:
+                break
+            else:
+                print("Employee must be atleast 20 years of age!!")
+#Employee name          
     while True:
         first_name=input("Enter first name (max 15 char)")
         if len(first_name)<= 15:
@@ -76,7 +86,7 @@ def ap1():
             break
         else:
             print("Max 15 characters")
-
+#Employee Gender
     while True:
         print("1.Male")
         print("2.Female")
@@ -89,7 +99,7 @@ def ap1():
             break
         else:
             print("Wrong input!!")
-
+#Employee hire date
     while True:
         while True:
             hyear=input("Enter hire year (4 int): ")
@@ -132,32 +142,23 @@ def ap1():
 
         try:
             hire_date=date(hyear,hmonth,hday)
-            break
         except ValueError:
             import traceback
-            traceback.print_exc
-
-    while True:
-        age=input("Enter employee age:")
-        if len(age) == 2:
-            try:
-                age=int(age)
-                print("Done OK")
-            except ValueError:
-                print("Age should be an integer!!")
-            else:
-                break
+            traceback.print_exc()
         else:
-            print("Age consists of 2 integers!!")
+            if age(birth_date)-age(hire_date)>=20:
+                break
+            else:
+                print("Employee must atleast be 20 years of age!!")
 
-    print("=========== Final Data ===========\n")
+
+    print("=========== Final Data ===========")
     print(emp_no,
     birth_date,
     first_name,
     last_name,
     gender,
-    hire_date,
-    age)
+    hire_date)
 ap1()
 
 # def ap():
