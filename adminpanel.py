@@ -1,15 +1,5 @@
-import pickle
-import mysql.connector
 import hireemployee
 
-def cursor():
-    cred = open("cred.dat","rb")
-    dat=pickle.load(cred)
-    cred.close()
-    Passwo=dat[0]
-    Databa=dat[1]
-    query=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-    return query.cursor()
 
 def ap2():
     print("ap2")

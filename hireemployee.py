@@ -1,8 +1,19 @@
 from datetime import date
+import pickle
+import mysql.connector
+
 def age(birthdate):
     today = date.today()
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
+
+cred = open("cred.dat","rb")
+dat=pickle.load(cred)
+cred.close()
+Passwo=dat[0]
+Databa=dat[1]
+query=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
+cur=query.cursor()
 
 def ap1():
     print("-------------Hire Employee Process-------------")
@@ -152,11 +163,17 @@ def ap1():
 
 
     print("=========== Final Data ===========")
-    x=(emp_no,
-    birth_date,
-    first_name,
-    last_name,
-    gender,
-    hire_date)
-    print(x)
-    return x
+    print(emp_no,birth_date,first_name,last_name,gender,hire_date)
+    add_employee=("INSERT INTO employees "
+    "(emp_no,birth_date,first_name,last_name,gender,hire_date) "
+    "VALUES (%s,%s,%s,%s,%s,%s)")
+    data_employee=(emp_no,birth_date,first_name,last_name,gender,hire_date)
+    try:
+        cur.execute(add_employee, data_employee)
+        query.commit()
+        cur.close()
+        query.close()
+    except mysql.connector.Error as err:
+        print(err.msg())
+    else:
+        print("Values added successfully!!")

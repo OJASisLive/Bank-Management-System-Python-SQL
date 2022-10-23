@@ -127,7 +127,7 @@ def querycheck():
                             print("already exists.")
                             existing+=1
                         else:
-                            print(err.msg)
+                            print(err.msg())
                     else:
                         print("OK")
                         with open("firsttime.txt","w") as f:

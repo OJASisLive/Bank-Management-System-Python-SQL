@@ -1,3 +1,4 @@
 import setup
-def getconnection():
-    return setup.setup()
+import accounttype
+conn=setup.setup()
+accounttype.acctype()
