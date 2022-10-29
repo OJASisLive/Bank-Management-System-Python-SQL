@@ -84,14 +84,14 @@ def ap1():
                 print("Employee must be atleast 20 years of age!!")
 #Employee name          
     while True:
-        first_name=input("Enter first name (max 15 char)")
+        first_name=input("Enter first name (max 15 char): ")
         if len(first_name)<= 15:
             break
         else:
             print("Max 15 characters")
 
     while True:
-        last_name=input("Enter last name (max 15 char)")
+        last_name=input("Enter last name (max 15 char): ")
         if len(last_name)<= 15:
             break
         else:
@@ -171,9 +171,9 @@ def ap1():
     try:
         cur.execute(add_employee, data_employee)
         query.commit()
-        cur.close()
-        query.close()
     except mysql.connector.Error as err:
-        print(err.msg())
+        print(err.msg)
+        print("-----------Value addition was unsuccessful!!!!-------------")
     else:
         print("Values added successfully!!")
+ap1()
