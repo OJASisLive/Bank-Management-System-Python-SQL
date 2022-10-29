@@ -1,8 +1,5 @@
 import hireemployee
-
-
-def ap2():
-    print("ap2")
+import fireemployee
 
 def ap3():
     print("ap3")
@@ -20,7 +17,7 @@ def ap():
         if a=='1':
             hireemployee.ap1()
         elif a=='2':
-            ap2()
+            fireemployee.ap2()
         elif a=='3':
             ap3()
         elif a=='0':
