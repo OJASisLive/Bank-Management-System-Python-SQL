@@ -1,8 +1,6 @@
 import hireemployee
 import fireemployee
-
-def ap3():
-    print("ap3")
+import editemployee
 
 def ap():
     print("\nWelcome Admin!!")
@@ -19,7 +17,7 @@ def ap():
         elif a=='2':
             fireemployee.ap2()
         elif a=='3':
-            ap3()
+            editemployee.ap3()
         elif a=='0':
             print("Quit Admin Panel.")
             break
