@@ -57,6 +57,8 @@ def ap3():
         f2()
 
 def f2():
+    global cur
+    global conn
     global emp_no
     global birth_date
     global hire_date
@@ -130,7 +132,7 @@ def f2():
                 import traceback
                 traceback.print_exc()
             else:
-                if age(birth_date)>=20:
+                if age(birth_date)>=20 and age(birth_date)<=60:
                     if age(birth_date)-age(hire_date)>=20:
                         try:
                             cur.execute("update employees set birth_date='{}' where emp_no={}".format(birth_date,emp_no))
@@ -147,7 +149,11 @@ def f2():
                         print(birth_date,": birth_date")
                         print(hire_date,":hire date you entered")
                 else:
-                    print("Employee must be atleast 20 years of age!!")
+                    if age(birth_date)<20:
+                        print("Employee must be atleast 20 years of age!!")
+                    else:
+                        print("Maximum age is 60 years!!!")
+                    print("\nwrong input\n")
     if a == '3':
         while True:
             first_name=input("Enter first name (max 15 char): ")
@@ -264,7 +270,7 @@ def f2():
                 if age(birth_date)-age(hire_date)>=20:
                     break
                 else:
-                    print("Employee must atleast be 20 years of age!!")
+                    print("Employee must atleast be 20 years of age when hired!!")
 
     cur.close()
     conn.close()

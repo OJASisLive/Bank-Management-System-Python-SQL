@@ -77,10 +77,14 @@ def ap1():
             import traceback
             traceback.print_exc()
         else:
-            if age(birth_date)>=20:
+            if age(birth_date)>=20 and age(birth_date)<=60:
                 break
             else:
-                print("Employee must be atleast 20 years of age!!")
+                if age(birth_date)<20:
+                    print("Employee must be atleast 20 years of age!!")
+                else:
+                    print("Maximum age is 60 years!!!")
+                print("\nwrong input\n")
 #Employee name          
     while True:
         first_name=input("Enter first name (max 15 char): ")
@@ -155,7 +159,9 @@ def ap1():
             import traceback
             traceback.print_exc()
         else:
-            if age(birth_date)-age(hire_date)>=20:
+            if age(hire_date)>60:
+                print("Employee must be below 60 years of age!!")
+            elif age(birth_date)-age(hire_date)>=20:
                 break
             else:
                 print("Employee must atleast be 20 years of age!!")
