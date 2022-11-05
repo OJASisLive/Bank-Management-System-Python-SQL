@@ -1,4 +1,6 @@
 import setup
+from check import check
 import accounttype
 conn=setup.setup()
-accounttype.acctype()
+if not check:
+    accounttype.acctype()
