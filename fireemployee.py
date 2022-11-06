@@ -22,7 +22,7 @@ def ap2():
         else:
             print("Maximum length is 5!")
     
-    query="delete from employees where emp_no = {}".format(emp_no)
+    query="delete from employees,empass where emp_no = {}".format(emp_no)
     cur.execute("select emp_no from employees")
     record=cur.fetchall()
     changed=False
@@ -34,7 +34,7 @@ def ap2():
                 changed=True
             except mysql.connector.Error as err:
                 print(err.msg)
-                print("-----------Value addition was unsuccessful!!!!-------------\n")
+                print("-----------Value deletion was unsuccessful!!!!-------------\n")
             else:
                 print("Employee fired successfully...\n")
     if not changed:

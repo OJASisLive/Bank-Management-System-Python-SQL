@@ -5,6 +5,10 @@ import mysql.connector
 
 from mysql.connector import errorcode
 existing=0
+
+conn=None
+cursor=None
+
 TABLES = {}
 TABLES['employees'] = (
     "CREATE TABLE `employees` ("
@@ -27,9 +31,20 @@ TABLES['clients'] = (
     "  `birth_date` date NOT NULL,"
     "  `acc_creation_date` date NOT NULL,"
     "  `mobile_no` int(10) NOT NULL,"
-    "  `email_id` varchar(25) NOT NULL"
+    "  `email_id` varchar(25) NOT NULL,"
+    "  `pass` varchar(8) NOT NULL"
     ") "
 )
+
+TABLES['empass'] = (
+    "CREATE TABLE `empass` ("
+    "  `emp_no` int(5) NOT NULL,"
+    "  `pass` varchar(8) NOT NULL,"
+    "  PRIMARY KEY (`emp_no`),"
+    "  FOREIGN KEY(`emp_no`) REFERENCES employees(emp_no)"
+    ") "
+)
+
 
 TABLES['savings'] = (
     "CREATE TABLE `savings` ("
@@ -108,6 +123,8 @@ def connectionquery():
     return query
 
 def querycheck():
+    global conn
+    global cursor
     global existing
     conn=connectionquery()
     ans=False
@@ -130,8 +147,6 @@ def querycheck():
                             print(err.msg())
                     else:
                         print("OK")
-                        with open("firsttime.txt","w") as f:
-                            f.write("False")
             ans=True
         
     if not ans:
@@ -152,6 +167,8 @@ def mysqlsetup():
     querycheck()
 
 def setup():
+    global cursor
+    global conn
     global existing
     while check.check():
         print("\n\n-----------------Welcome to the Project!!!-------------------")
@@ -165,7 +182,7 @@ def setup():
             break
         if ans2=="1":
             mysqlsetup()
-            if existing==6:
+            if existing==7:
                 with open("firsttime.txt","w") as f:
                     f.write("False")
                 continue
@@ -175,4 +192,4 @@ def setup():
             print("\nWrong input, (1/2).........")
     else: 
         if querycheck():
-            connectionquery()
+            return True

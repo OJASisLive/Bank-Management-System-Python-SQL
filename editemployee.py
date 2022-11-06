@@ -52,6 +52,7 @@ def ap3():
         print("4.last-name:",results1[3])
         print("5.gender:",results1[4])
         print("6.hire_date:",results1[5])
+        print("7.password")
         birth_date=results1[1]
         hire_date=results1[5]
         f2()
@@ -268,9 +269,43 @@ def f2():
                 traceback.print_exc()
             else:
                 if age(birth_date)-age(hire_date)>=20:
-                    break
+                    try:
+                        cur.execute("update employees set hire_date='{}' where emp_no={}".format(hire_date,emp_no))
+                        conn.commit()
+                    except mysql.connector.Error as err:
+                        print(err.msg)
+                        print("-----------Value addition was unsuccessful!!!!-------------")
+                        break
+                    else:
+                        print("Updated hire date...")
+                        break
                 else:
                     print("Employee must atleast be 20 years of age when hired!!")
-
+    if a=='7':
+        print("1.Show the password")
+        print("2.Change the password")
+        ans=input("Enter your choice (1,2):")
+        if ans=='1':
+            cur.execute("SELECT pass from empass where emp_no={}".format(emp_no))
+            result=cur.fetchall()
+            print(result[0][0], "is the password.")
+        elif ans=='2':
+            while True:
+                password=input("Enter employee login password(max 8 characters, min 4): ")
+                lp=len(password)
+                if lp>8:
+                    print("Max 8 characters only.")
+                elif lp<4:
+                    print("Minimum 4 characters to be entered.")
+                else:
+                    try:
+                        cur.execute("UPDATE empass set pass=LPAD({},{},'0') where emp_no={}".format(password,lp,emp_no))
+                        conn.commit()
+                    except mysql.connector.Error as err:
+                        print(err.msg)
+                        print("-----------Password change was unsuccessful!!!!-------------")
+                    else:
+                        print("Password changed successfully!!!")
+                        break
     cur.close()
     conn.close()
