@@ -26,6 +26,9 @@ That means you entered your credentials properly
 
 3.Any other exception will pop up in the terminal...
 
+# More information/Structure/Wiki
+[Wiki](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/wiki)
+
 # About:
 This project aims to create a bridge between Python and SQL and use it in real world problems/applications...
 
