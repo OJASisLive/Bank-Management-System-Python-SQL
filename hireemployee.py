@@ -183,13 +183,14 @@ def ap1():
         print("Values added successfully!!")
         while True:
             password=input("Enter employee login password(max 8 characters, min 4): ")
-            if len(password)>8:
+            lp=len(password)
+            if lp>8:
                 print("Max 8 characters only.")
-            elif len(password)<4:
+            elif lp<4:
                 print("Minimum 4 characters to be entered.")
             else:
                 try:
-                    cur.execute("INSERT INTO empass values({},LPAD({},{},'0')".format(emp_no,password,len(password)))
+                    cur.execute("INSERT INTO empass values({},LPAD({},{},'0'))".format(emp_no,password,lp))
                     query.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)

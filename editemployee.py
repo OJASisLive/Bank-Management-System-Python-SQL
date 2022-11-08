@@ -160,7 +160,7 @@ def f2():
             first_name=input("Enter first name (max 15 char): ")
             if len(first_name)<= 15:
                 try:
-                    cur.execute("update employees set first_name={} where emp_no={}".format(first_name,emp_no))
+                    cur.execute("update employees set first_name='{}' where emp_no={}".format(first_name,emp_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -177,7 +177,7 @@ def f2():
             last_name=input("Enter last name (max 15 char): ")
             if len(last_name)<= 15:
                 try:
-                    cur.execute("update employees set last_name={} where emp_no={}".format(last_name,emp_no))
+                    cur.execute("update employees set last_name='{}' where emp_no={}".format(last_name,emp_no))
                     conn.commit()
                 except mysql.connector.Error as err:
                     print(err.msg)
@@ -202,7 +202,7 @@ def f2():
                     print("-----------Value addition was unsuccessful!!!!-------------")
                     break
                 else:
-                    print("Updated first name...")
+                    print("Updated gender...")
                     break
                 
             elif a=='2':
@@ -215,7 +215,7 @@ def f2():
                     print("-----------Value addition was unsuccessful!!!!-------------")
                     break
                 else:
-                    print("Updated first name...")
+                    print("Updated gender...")
                     break
 
             else:

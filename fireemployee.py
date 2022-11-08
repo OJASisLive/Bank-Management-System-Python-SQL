@@ -22,13 +22,16 @@ def ap2():
         else:
             print("Maximum length is 5!")
     
-    query="delete from employees,empass where emp_no = {}".format(emp_no)
+    query="delete from employees where emp_no = {}".format(emp_no)
+    query2="delete from empass where emp_no = {}".format(emp_no)
     cur.execute("select emp_no from employees")
     record=cur.fetchall()
     changed=False
     for r in record:
         if r[0]==emp_no:
             try:
+                cur.execute(query2)
+                conn.commit()
                 cur.execute(query)
                 conn.commit()
                 changed=True

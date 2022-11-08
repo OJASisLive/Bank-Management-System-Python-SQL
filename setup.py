@@ -139,6 +139,7 @@ def querycheck():
                     try:
                         print("Creating table {}: ".format(table_name), end='')
                         cursor.execute(table_description)
+                        existing+=1
                     except mysql.connector.Error as err:
                         if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
                             print("already exists.")
@@ -147,7 +148,10 @@ def querycheck():
                             print(err.msg())
                     else:
                         print("OK")
-            ans=True
+            if existing==7:
+                with open("firsttime.txt","w") as f:
+                    f.write("False")
+                ans=True
         
     if not ans:
         print("There was a problem in connection")
@@ -183,8 +187,6 @@ def setup():
         if ans2=="1":
             mysqlsetup()
             if existing==7:
-                with open("firsttime.txt","w") as f:
-                    f.write("False")
                 continue
         if ans2=="2":
             print("\nThis is under development :). Please use mysql till then...")
