@@ -30,7 +30,7 @@ TABLES['clients'] = (
     "  `gender` enum('M','F') NOT NULL,"
     "  `birth_date` date NOT NULL,"
     "  `acc_creation_date` date NOT NULL,"
-    "  `mobile_no` int(10) NOT NULL,"
+    "  `mobile_no` varchar(20) NOT NULL,"
     "  `email_id` varchar(25) NOT NULL,"
     "  `pass` varchar(8) NOT NULL"
     ") "
