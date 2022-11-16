@@ -9,7 +9,7 @@ def age(birthdate):
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
 
-def ap1():
+def ep1():
     cred = open("cred.dat","rb")
     dat=pickle.load(cred)
     cred.close()
