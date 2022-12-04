@@ -79,7 +79,7 @@ def menu(x):
     record=cur.fetchone()
     print("---------------Welcome {} {} ----------------".format(record[0],record[1]))
     print("1.Create client account")
-    print("2.Change client pin")
+    print("2.Change client details")
     print("3.Close client account")
     print("4.Show client table")
     print("Enter 0 to quit.")

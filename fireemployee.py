@@ -1,13 +1,5 @@
 import mysql.connector
-import pickle
-def ap2():
-    cred = open("cred.dat","rb")
-    dat=pickle.load(cred)
-    cred.close()
-    Passwo=dat[0]
-    Databa=dat[1]
-    conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-    cur=conn.cursor()
+def ap2(conn,cur):
     print("---------Fire employee process----------\n")
     while True:
         emp_no=input(("Enter emp_no of the employee to fire them: "))
@@ -43,5 +35,3 @@ def ap2():
     if not changed:
         print("The employee number does not exist.")
         print("------------Could not fire employee-----------\n")
-    cur.close()
-    conn.close()

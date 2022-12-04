@@ -1,13 +1,6 @@
 import mysql.connector
-import pickle
-def ap4():
-    cred = open("cred.dat","rb")
-    dat=pickle.load(cred)
-    cred.close()
-    Passwo=dat[0]
-    Databa=dat[1]
-    conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-    cur=conn.cursor()
+
+def ap4(cur):
     cur.execute("select * from employees")
     results=cur.fetchall()
     print("+---------+-------------+------------------+------------------+---------+-------------+")
@@ -15,6 +8,4 @@ def ap4():
     for row in results:
         print("+---------+-------------+------------------+------------------+---------+-------------+")
         print("|","%7s"%row[0],"|","%11s"%row[1],"|","%16s"%row[2],"|","%16s"%row[3],"|","%7s"%row[4],"|","%11s"%row[5],"|")
-    cur.close()
-    conn.close()
     print("+---------+-------------+------------------+------------------+---------+-------------+")

@@ -6,23 +6,10 @@ def age(birthdate):
     today = date.today()
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
-
-cur=None
-conn=None
 emp_no=0
 hire_date=None
 birth_date=None
-def ap3():
-    global cur
-    global conn
-    cred = open("cred.dat","rb")
-    dat=pickle.load(cred)
-    cred.close()
-    Passwo=dat[0]
-    Databa=dat[1]
-    conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-    cur=conn.cursor()
-
+def ap3(conn,cur):
     global emp_no
     global birth_date
     global hire_date
@@ -55,11 +42,9 @@ def ap3():
         print("7.password")
         birth_date=results1[1]
         hire_date=results1[5]
-        f2()
+        f2(conn,cur)
 
-def f2():
-    global cur
-    global conn
+def f2(conn,cur):
     global emp_no
     global birth_date
     global hire_date
@@ -307,5 +292,3 @@ def f2():
                     else:
                         print("Password changed successfully!!!")
                         break
-    cur.close()
-    conn.close()

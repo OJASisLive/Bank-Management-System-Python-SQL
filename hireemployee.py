@@ -1,20 +1,16 @@
 from datetime import date
 import pickle
 import mysql.connector
+import connection
 
 def age(birthdate):
     today = date.today()
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
 
+query,cur=connection.cc()
 def ap1():
-    cred = open("cred.dat","rb")
-    dat=pickle.load(cred)
-    cred.close()
-    Passwo=dat[0]
-    Databa=dat[1]
-    query=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-    cur=query.cursor()
+    global query,cur
     print("-------------Hire Employee Process-------------")
 
 #Employee number
@@ -198,5 +194,15 @@ def ap1():
                 else:
                     print("Password added successfully!!!")
                     break
-    cur.close()
-    query.close()
+
+import editemployee
+def ap3():
+    editemployee.ap3(query,cur)
+
+import fireemployee
+def ap2():
+    fireemployee.ap2(query,cur)
+
+import showemployee
+def ap4():
+    showemployee.ap4(cur)

@@ -1,7 +1,4 @@
 import hireemployee
-import fireemployee
-import editemployee
-import showemployee
 
 def ap():
     print("\nWelcome Admin!!")
@@ -17,13 +14,15 @@ def ap():
         if a=='1':
             hireemployee.ap1()
         elif a=='2':
-            fireemployee.ap2()
+            hireemployee.ap2()
         elif a=='3':
-            editemployee.ap3()
+            hireemployee.ap3()
         elif a=='4':
-            showemployee.ap4()
+            hireemployee.ap4()
         elif a=='0':
             print("Quit Admin Panel.")
             break
         else:
             print("Wrong input!(1,2,3)")
+
+ap()
