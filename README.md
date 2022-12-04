@@ -1,3 +1,10 @@
+# NOTICE:
+Further updates would be pushed on the ["shorten-the-code"](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/tree/shorten-the-code) branch where I am planning to shorten the code by
+removing duplicate code and referencing them.
+
+- I will test the code from the surface and "won't test till depth" (atleast till the project is over).
+- I will "hard-test" the code when the project is complete.
+
 # Bank Management System:
 First of all, whole code is written by me and nothing has been copy pasted fron anywhere.
 
