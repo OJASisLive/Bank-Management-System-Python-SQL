@@ -2,7 +2,7 @@
 The purpose of this branch is to shorten the number of lines of code by removing duplicate lines
 as much as possible.
 
-- I have not tested the whole code over here, so if anyone finds any bug, please post it in the     issues section
+- I have not tested the whole code over here, so if anyone finds any bug, please post it in the     [issues section](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/issues/new/choose) 
  and I will look after it then
 
 # More information/Structure/Wiki
