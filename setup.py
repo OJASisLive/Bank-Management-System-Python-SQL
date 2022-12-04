@@ -23,13 +23,13 @@ TABLES['employees'] = (
 
 TABLES['clients'] = (
     "CREATE TABLE `clients` ("
-    "  `acc_no` int(5) NOT NULL PRIMARY KEY,"
-    "  `acc_type` enum('S','C') NOT NULL,"
+    "  `acc_no` int NOT NULL PRIMARY KEY,"
+    "  `type` enum('S','C') NOT NULL,"
     "  `first_name` varchar(15) NOT NULL,"
     "  `last_name` varchar(15) NOT NULL,"
     "  `gender` enum('M','F') NOT NULL,"
     "  `birth_date` date NOT NULL,"
-    "  `acc_creation_date` date NOT NULL,"
+    "  `accd` date NOT NULL,"
     "  `mobile_no` varchar(20) NOT NULL,"
     "  `email_id` varchar(25) NOT NULL,"
     "  `pass` varchar(8) NOT NULL"

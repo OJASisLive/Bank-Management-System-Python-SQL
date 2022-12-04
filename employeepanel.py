@@ -1,4 +1,3 @@
-import mysql.connector
 import createaccount
 
 def ep(conn,cur):
@@ -40,7 +39,7 @@ def ep(conn,cur):
                 password=record[0][1]
                 a=input("Enter your password:")
                 if a==password:
-                    choice=menu(emp_no,conn,cur)
+                    choice=menu(emp_no,cur)
                     if choice=="1":
                         createaccount.ep1(conn,cur)
                     elif choice=="2":
@@ -59,7 +58,7 @@ def ep(conn,cur):
                     print("Wrong password!!")
                     break
 
-def menu(x,conn,cur):
+def menu(x,cur):
     cur.execute("select first_name,last_name from employees where emp_no = {}".format(x))
     record=cur.fetchone()
     print("---------------Welcome {} {} ----------------".format(record[0],record[1]))
