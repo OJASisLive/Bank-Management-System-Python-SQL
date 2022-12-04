@@ -1,6 +1,6 @@
 import adminpanel
 import employeepanel
-def acctype():
+def acctype(query,cur):
     while True:
         print("--------------Account Selector Menu--------------")
         print("1.Admin.")
@@ -12,14 +12,14 @@ def acctype():
         if a=='1':
             b=input("\nEnter admin password:")
             if b=="admin123":
-                adminpanel.ap()
+                adminpanel.ap(query,cur)
             else:
                 print("\nWrong password!\n") 
             
         elif a=='2':
             b=input("\nEnter employee password:")
             if b=="emp123":
-                employeepanel.ep()
+                employeepanel.ep(query,cur)
             else:
                 print("\nWrong password!\n")
         

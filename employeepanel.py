@@ -1,22 +1,9 @@
-import pickle
 import mysql.connector
 import createaccount
 
-conn=None
-cur=None
-def ep():
-    global conn
-    global cur
+def ep(conn,cur):
     print("\nWelcome employee!!")
     print("Please log in with your creds (emp_id and password):")
-
-    cred = open("cred.dat","rb")
-    dat=pickle.load(cred)
-    cred.close()
-    Passwo=dat[0]
-    Databa=dat[1]
-    conn=mysql.connector.connect(host="localhost",user="root",password=Passwo,database=Databa)
-    cur=conn.cursor()
 
     while True:
         print("---------------------Employee Panel--------------------")
@@ -53,9 +40,9 @@ def ep():
                 password=record[0][1]
                 a=input("Enter your password:")
                 if a==password:
-                    choice=menu(emp_no)
+                    choice=menu(emp_no,conn,cur)
                     if choice=="1":
-                        createaccount.ep1()
+                        createaccount.ep1(conn,cur)
                     elif choice=="2":
                         break
                     elif choice=="3":
@@ -72,9 +59,7 @@ def ep():
                     print("Wrong password!!")
                     break
 
-def menu(x):
-    global conn
-    global cur
+def menu(x,conn,cur):
     cur.execute("select first_name,last_name from employees where emp_no = {}".format(x))
     record=cur.fetchone()
     print("---------------Welcome {} {} ----------------".format(record[0],record[1]))

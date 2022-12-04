@@ -1,6 +1,6 @@
 import mysql.connector
-import pickle
 from datetime import date
+import dataentering
 
 def age(birthdate):
     today = date.today()
@@ -51,95 +51,32 @@ def f2(conn,cur):
     print("0 to quit.")
     a=input("What would you like to change from the above:")
     if a == '1':
-        while True:
-            en=input("Enter emp_no (max 5 int): ")
-            if len(en) <= 5:
-                try:
-                    en=int(en)
-                    print("Done OK")
-                except ValueError:
-                    print("emp_no should be an integer!!")
-                else:
-                    try:
-                        cur.execute("update employees set emp_no={} where emp_no={}".format(en,emp_no))
-                        conn.commit()
-                    except mysql.connector.Error as err:
-                        print(err.msg)
-                        print("-----------Value addition was unsuccessful!!!!-------------")
-                    else:
-                        print("Updated employee number...")
-                        break
-            else:
-                print("Maximum length is 5!")
+        en=dataentering.primary_key_no("emp_no")
+        try:
+            cur.execute("update employees set emp_no={} where emp_no={}".format(en,emp_no))
+            conn.commit()
+        except mysql.connector.Error as err:
+            print(err.msg)
+            print("-----------Value addition was unsuccessful!!!!-------------")
+        else:
+            print("Updated employee number...")
+
     if a == '2':
-        while True:
-            while True:
-                year=input("Enter birth year (4 int): ")
-                if len(year) == 4:
-                    try:
-                        year=int(year)
-                        print("Done OK")
-                    except ValueError:
-                        print("year should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Year consists of 4 integers!!")
-
-            while True:
-                month=input("Enter birth month (2 int) (01 to 12): ")
-                if len(month) == 2:
-                    try:
-                        month=int(month)
-                        print("Done OK")
-                    except ValueError:
-                        print("month should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Month consists of 2 integers!!")
-
-            while True:
-                day=input("Enter birth day (2 int) : ")
-                if len(day) == 2:
-                    try:
-                        day=int(day)
-                        print("Done OK")
-                    except ValueError:
-                        print("Date should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Date consists of 2 integers!!")
-
+        birth_date=dataentering.birthdate("employee",20,60)
+        if age(birth_date)-age(hire_date)>=20:
             try:
-                birth_date=date(year,month,day)
-            except ValueError:
-                import traceback
-                traceback.print_exc()
+                cur.execute("update employees set birth_date='{}' where emp_no={}".format(birth_date,emp_no))
+                conn.commit()
+            except mysql.connector.Error as err:
+                print(err.msg)
+                print("-----------Value addition was unsuccessful!!!!-------------")
             else:
-                if age(birth_date)>=20 and age(birth_date)<=60:
-                    if age(birth_date)-age(hire_date)>=20:
-                        try:
-                            cur.execute("update employees set birth_date='{}' where emp_no={}".format(birth_date,emp_no))
-                            conn.commit()
-                        except mysql.connector.Error as err:
-                            print(err.msg)
-                            print("-----------Value addition was unsuccessful!!!!-------------")
-                            break
-                        else:
-                            print("Updated birth date...")
-                            break
-                    else:
-                        print("Employee must be atleast 20 years of age when hired!!")
-                        print(birth_date,": birth_date")
-                        print(hire_date,":hire date you entered")
-                else:
-                    if age(birth_date)<20:
-                        print("Employee must be atleast 20 years of age!!")
-                    else:
-                        print("Maximum age is 60 years!!!")
-                    print("\nwrong input\n")
+                print("Updated birth date...")
+        else:
+            print("Employee must be atleast 20 years of age when hired!!")
+            print(birth_date,": birth_date")
+            print(hire_date,":hire date you entered")
+
     if a == '3':
         while True:
             first_name=input("Enter first name (max 15 char): ")
@@ -207,65 +144,16 @@ def f2(conn,cur):
                 print("Wrong input!!")
 
     if a == '6':
-        while True:
-            while True:
-                hyear=input("Enter hire year (4 int): ")
-                if len(hyear) == 4:
-                    try:
-                        hyear=int(hyear)
-                        print("Done OK")
-                    except ValueError:
-                        print("year should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Year consists of 4 integers!!")
+        hire_date=dataentering.date2("employee",birth_date,"hire",20,60)
+        try:
+            cur.execute("update employees set hire_date='{}' where emp_no={}".format(hire_date,emp_no))
+            conn.commit()
+        except mysql.connector.Error as err:
+            print(err.msg)
+            print("-----------Value addition was unsuccessful!!!!-------------")
+        else:
+            print("Updated hire date...")
 
-            while True:
-                hmonth=input("Enter hire month (2 int) (01 to 12): ")
-                if len(hmonth) == 2:
-                    try:
-                        hmonth=int(hmonth)
-                        print("Done OK")
-                    except ValueError:
-                        print("month should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Month consists of 2 integers!!")
-
-            while True:
-                hday=input("Enter hire day (2 int) (01 to 31): ")
-                if len(hday) == 2:
-                    try:
-                        hday=int(hday)
-                        print("Done OK")
-                    except ValueError:
-                        print("Date should be an integer!!")
-                    else:
-                        break
-                else:
-                    print("Date consists of 2 integers!!")
-
-            try:
-                hire_date=date(hyear,hmonth,hday)
-            except ValueError:
-                import traceback
-                traceback.print_exc()
-            else:
-                if age(birth_date)-age(hire_date)>=20:
-                    try:
-                        cur.execute("update employees set hire_date='{}' where emp_no={}".format(hire_date,emp_no))
-                        conn.commit()
-                    except mysql.connector.Error as err:
-                        print(err.msg)
-                        print("-----------Value addition was unsuccessful!!!!-------------")
-                        break
-                    else:
-                        print("Updated hire date...")
-                        break
-                else:
-                    print("Employee must atleast be 20 years of age when hired!!")
     if a=='7':
         print("1.Show the password")
         print("2.Change the password")
