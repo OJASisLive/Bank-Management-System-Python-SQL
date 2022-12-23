@@ -1,7 +1,7 @@
-import hireemployee
-import fireemployee
-import editemployee
-import showemployee
+from admin import hireemployee
+from admin import fireemployee
+from admin import editemployee
+from admin import showemployee
 def ap(query,conn):
     print("\nWelcome Admin!!")
     

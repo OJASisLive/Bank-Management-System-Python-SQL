@@ -1,4 +1,4 @@
-import check
+from initialization import check
 
 import pickle
 import mysql.connector

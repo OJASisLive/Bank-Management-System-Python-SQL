@@ -1,6 +1,3 @@
-import pickle
-import mysql.connector
-
 from datetime import date
 
 def age(birthdate):

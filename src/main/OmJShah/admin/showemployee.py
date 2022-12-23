@@ -1,5 +1,3 @@
-import mysql.connector
-
 def ap4(cur):
     cur.execute("select * from employees")
     results=cur.fetchall()
