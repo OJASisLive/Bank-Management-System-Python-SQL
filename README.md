@@ -1,4 +1,7 @@
 # Latest Branch Info:
+The purpose of this branch is to shorten the code by referencing duplicate code blocks.
+
+# NOTE:
 I have successfully merged the "organize-the-code" branch into this branch. The former branch is deleted now.
 
 # Old Branch Information:
