@@ -1,5 +1,5 @@
-import adminpanel
-import employeepanel
+from panels import adminpanel
+from panels import employeepanel
 def acctype(query,cur):
     while True:
         print("--------------Account Selector Menu--------------")

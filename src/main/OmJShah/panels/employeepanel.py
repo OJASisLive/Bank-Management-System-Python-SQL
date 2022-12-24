@@ -1,4 +1,5 @@
-import createaccount
+from employee import createaccount
+from employee import editaccount
 
 def ep(conn,cur):
     print("\nWelcome employee!!")
@@ -12,8 +13,6 @@ def ep(conn,cur):
         if ch == "1":
             print("------------login panel-------------")
         elif ch == "2":
-            cur.close()
-            conn.close()
             break
         else:
             print("Wrong input!!!(1 or 2 only)")
@@ -43,14 +42,12 @@ def ep(conn,cur):
                     if choice=="1":
                         createaccount.ep1(conn,cur)
                     elif choice=="2":
-                        break
+                        editaccount.ep2(conn,cur)
                     elif choice=="3":
                         break
                     elif choice=="4":
                         break
                     elif choice=="0":
-                        cur.close()
-                        conn.close()
                         break
                     else:
                         print("Wrong input!")

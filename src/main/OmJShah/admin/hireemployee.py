@@ -1,6 +1,5 @@
-from datetime import date
 import mysql.connector
-import dataentering
+from tools import dataentering
 
 def ap1(query,cur):
     print("-------------Hire Employee Process-------------")

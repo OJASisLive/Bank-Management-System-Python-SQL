@@ -1,4 +1,5 @@
 from datetime import date
+import mysql.connector
 
 def age(birthdate):
     today = date.today()
@@ -80,7 +81,7 @@ def birthdate(person,minage,maxage):
                     print("Maximum age is {} years!!!".format(maxage))
                 print("\nwrong input\n")
 
-def name():
+def fname():
 #Employee name and client name     
     while True:
         first_name=input("Enter first name (max 15 char): ")
@@ -88,7 +89,9 @@ def name():
             break
         else:
             print("Max 15 characters")
+    return first_name
 
+def lname():
     while True:
         last_name=input("Enter last name (max 15 char): ")
         if len(last_name)<= 15:
@@ -96,7 +99,7 @@ def name():
         else:
             print("Max 15 characters")
     
-    return first_name,last_name
+    return last_name
 
 def gender():
 #Employee Gender and client gender
@@ -169,3 +172,54 @@ def date2(person,birth_date,hire_or_creation,minage,maxage):
             else:
                 print("{} must atleast be {} years of age!!".format(person,maxage))
     return hire_date
+
+def mobileno():
+    while True:
+        mobile_no_str=input("Enter mobile no. (7 to 15 int)") 
+        mobile_no=mobile_no_str 
+        #Thanks to the international phone numbering plan (ITU-T E. 164), 
+        #phone numbers cannot contain more than 15 digits. The shortest 
+        #international phone numbers in use contain seven digits.
+        try:
+            mobile_no=int(mobile_no)
+        except ValueError:
+            print("mobile_no should be an integer!!")
+        else:
+            if len(mobile_no_str)>6 and len(mobile_no_str)<16:
+                mobile_no=mobile_no_str
+                lmn=len(mobile_no)
+                break
+            else:
+                print("Mobile number can have min 7 digits and max 15!!")
+    return mobile_no,lmn
+
+def email():
+    while True:
+        email_id=input("Enter client Email ID (max 25 char):")
+        if len(email_id)<26:
+            break
+        else:
+            print("Maximum 25 characters")
+    return email_id
+
+def clientpassword():
+    while True:
+            password=input("Enter client login password(max 8 characters, min 4): ")
+            lp=len(password)
+            if lp>8:
+                print("Max 8 characters only.")
+            elif lp<4:
+                print("Minimum 4 characters to be entered.")
+            else:
+                break
+    return password,lp
+
+def tableupdate(conn,cur,query,data):
+    try:
+        cur.execute(query,data)
+        conn.commit()
+    except mysql.connector.Error as err:
+        print(err.msg)
+        print("-----------Value addition was unsuccessful!!!!-------------")
+    else:
+        return bool(True)

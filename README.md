@@ -1,6 +1,7 @@
 # Branch Information:
-The purpose of this branch is to shorten the number of lines of code by removing duplicate lines
-as much as possible.
+The purpose of this branch is to organize the code in packages and modules. This will soon be merged into the "[shorten-the-code](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/tree/shorten-the-code)" branch.
+
+After merger, this branch will be deleted.
 
 - I have not tested the whole code over here, so if anyone finds any bug, please post it in the     [issues section](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/issues/new/choose) 
  and I will look after it then

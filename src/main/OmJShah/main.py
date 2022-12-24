@@ -1,7 +1,7 @@
-import setup
-import check
-import accounttype
-import connection
+from initialization import setup
+from initialization import check
+from panels import accounttype
+from tools import connection
 query,cur=connection.cc()
 while True:
     print("1.Continue")
