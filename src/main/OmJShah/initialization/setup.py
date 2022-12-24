@@ -41,7 +41,6 @@ TABLES['empass'] = (
     "  `emp_no` int(5) NOT NULL,"
     "  `pass` varchar(8) NOT NULL,"
     "  PRIMARY KEY (`emp_no`),"
-    "  FOREIGN KEY(`emp_no`) REFERENCES employees(emp_no)"
     ") "
 )
 
@@ -52,7 +51,6 @@ TABLES['savings'] = (
     "  `balance` int NOT NULL,"
     "  `loan` enum('YES','NO') NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "
 )
 
@@ -62,7 +60,6 @@ TABLES['current'] = (
     "  `balance` int NOT NULL,"
     "  `overdraft` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "
 )
 
@@ -76,7 +73,6 @@ TABLES['loan'] = (
     "  `amt-per-month` int NOT NULL,"
     "  `remaining_amt` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "
 )
 
@@ -86,7 +82,6 @@ TABLES['overdraft']=(
     "  `overdraft_amt` int NOT NULL,"
     "  `od_with_interest_remaining` int NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
     ") "
 )
 

@@ -6,16 +6,17 @@ def age(birthdate):
     today = date.today()
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
-emp_no=0
+emp_no=None
 hire_date=None
 birth_date=None
+
 def ap3(conn,cur):
-    global emp_no
-    global birth_date
-    global hire_date
+    global emp_no,birth_date,hire_date
     print("---------Edit employee process----------\n")
     while True:
+        print("input ~ to quit")
         emp_no=input(("Enter emp_no of the employee to edit the details: "))
+        if emp_no=="~": break
         if len(emp_no) <= 5:
             try:
                 emp_no=int(emp_no)
@@ -23,13 +24,15 @@ def ap3(conn,cur):
             except ValueError:
                 print("emp_no should be an integer!!")
             else:
+                next(conn,cur)
                 break
         else:
             print("Maximum length is 5!")
+
+def next(conn,cur):
     cur.execute("select * from employees where emp_no={}".format(emp_no))
     results=cur.fetchall()
-    if results == []:
-        print(results)
+    if len(results)==0:
         print("That employee number does not exist.")
     else:
         results1=results[0]
@@ -45,113 +48,60 @@ def ap3(conn,cur):
         f2(conn,cur)
 
 def f2(conn,cur):
-    global emp_no
-    global birth_date
-    global hire_date
+    global emp_no,birth_date,hire_date
     print("0 to quit.")
     a=input("What would you like to change from the above:")
     if a == '1':
         en=dataentering.primary_key_no("emp_no")
-        try:
-            cur.execute("update employees set emp_no={} where emp_no={}".format(en,emp_no))
-            conn.commit()
-        except mysql.connector.Error as err:
-            print(err.msg)
-            print("-----------Value addition was unsuccessful!!!!-------------")
-        else:
+        query="update employees set emp_no=%s where emp_no=%s"
+        data=(en,emp_no)
+        done=dataentering.tableupdate(conn,cur,query,data)
+        if done:
             print("Updated employee number...")
 
     if a == '2':
         birth_date=dataentering.birthdate("employee",20,60)
         if age(birth_date)-age(hire_date)>=20:
-            try:
-                cur.execute("update employees set birth_date='{}' where emp_no={}".format(birth_date,emp_no))
-                conn.commit()
-            except mysql.connector.Error as err:
-                print(err.msg)
-                print("-----------Value addition was unsuccessful!!!!-------------")
-            else:
-                print("Updated birth date...")
+            query="update employees set birth_date=%s where emp_no=%s"
+            data=(birth_date,emp_no)
+            done=dataentering.tableupdate(conn,cur,query,data)
+            if done:
+                print("Updated birth date")
         else:
             print("Employee must be atleast 20 years of age when hired!!")
             print(birth_date,": birth_date")
             print(hire_date,":hire date you entered")
 
     if a == '3':
-        while True:
-            first_name=input("Enter first name (max 15 char): ")
-            if len(first_name)<= 15:
-                try:
-                    cur.execute("update employees set first_name='{}' where emp_no={}".format(first_name,emp_no))
-                    conn.commit()
-                except mysql.connector.Error as err:
-                    print(err.msg)
-                    print("-----------Value addition was unsuccessful!!!!-------------")
-                    break
-                else:
-                    print("Updated first name...")
-                    break
-            else:
-                print("Max 15 characters")
+        first_name=dataentering.fname()
+        query="update employees set first_name=%s where emp_no=%s"
+        data=(first_name,emp_no)
+        done=dataentering.tableupdate(conn,cur,query,data)
+        if done:
+            print("Updated first name...")
 
     if a == '4':
-        while True:
-            last_name=input("Enter last name (max 15 char): ")
-            if len(last_name)<= 15:
-                try:
-                    cur.execute("update employees set last_name='{}' where emp_no={}".format(last_name,emp_no))
-                    conn.commit()
-                except mysql.connector.Error as err:
-                    print(err.msg)
-                    print("-----------Value addition was unsuccessful!!!!-------------")
-                    break
-                else:
-                    print("Updated last name...")
-                    break
-            else:
-                print("Max 15 characters")
+        last_name=dataentering.lname()
+        query="update employees set last_name=%s where emp_no=%s"
+        data=(last_name,emp_no)
+        done=dataentering.tableupdate(conn,cur,query,data)
+        if done:
+            print("Updated last name...")
+                    
     if a == '5':
-        while True:
-            print("1.Male")
-            print("2.Female")
-            a=input("Enter choice (1 or 2):")
-            if a== '1':
-                try:
-                    cur.execute("update employees set gender='M' where emp_no={}".format(emp_no))
-                    conn.commit()
-                except mysql.connector.Error as err:
-                    print(err.msg)
-                    print("-----------Value addition was unsuccessful!!!!-------------")
-                    break
-                else:
-                    print("Updated gender...")
-                    break
-                
-            elif a=='2':
-                gender='F'
-                try:
-                    cur.execute("update employees set gender='F' where emp_no={}".format(emp_no))
-                    conn.commit()
-                except mysql.connector.Error as err:
-                    print(err.msg)
-                    print("-----------Value addition was unsuccessful!!!!-------------")
-                    break
-                else:
-                    print("Updated gender...")
-                    break
-
-            else:
-                print("Wrong input!!")
+        gender=dataentering.gender()
+        query="update employees set gender=%s where emp_no=%s"
+        data=(gender,emp_no)
+        done=dataentering.tableupdate(conn,cur,query,data)
+        if done:
+            print("Updated gender...")
 
     if a == '6':
         hire_date=dataentering.date2("employee",birth_date,"hire",20,60)
-        try:
-            cur.execute("update employees set hire_date='{}' where emp_no={}".format(hire_date,emp_no))
-            conn.commit()
-        except mysql.connector.Error as err:
-            print(err.msg)
-            print("-----------Value addition was unsuccessful!!!!-------------")
-        else:
+        query="update employees set hire_date=%s where emp_no=%s"
+        data=(hire_date,emp_no)
+        done=dataentering.tableupdate(conn,cur,query,data)
+        if done:
             print("Updated hire date...")
 
     if a=='7':
@@ -171,12 +121,11 @@ def f2(conn,cur):
                 elif lp<4:
                     print("Minimum 4 characters to be entered.")
                 else:
-                    try:
-                        cur.execute("UPDATE empass set pass=LPAD({},{},'0') where emp_no={}".format(password,lp,emp_no))
-                        conn.commit()
-                    except mysql.connector.Error as err:
-                        print(err.msg)
-                        print("-----------Password change was unsuccessful!!!!-------------")
-                    else:
+                    query="UPDATE empass set pass=LPAD(%s,%s,'0') where emp_no=%s"
+                    data=(password,lp,emp_no)
+                    done=dataentering.tableupdate(conn,cur,query,data)
+                    if done:
                         print("Password changed successfully!!!")
+                        break
+                    else:
                         break
