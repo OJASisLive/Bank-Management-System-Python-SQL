@@ -1,4 +1,7 @@
-# Branch Information:
+# Latest Branch Info:
+I have successfully merged the "organize-the-code" branch into this branch. The former branch is deleted now.
+
+# Old Branch Information:
 The purpose of this branch is to organize the code in packages and modules. This will soon be merged into the "[shorten-the-code](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/tree/shorten-the-code)" branch.
 
 After merger, this branch will be deleted.
