@@ -39,8 +39,9 @@ def ep(conn,cur):
         else:
             while True:
                 password=record[0][1]
-                a=input("\nEnter your password to continue:")
-                print("Input ~ to quit.")
+                print("\nInput ~ to quit.")
+                a=input("Enter your password to continue:")
+                print()
                 if a==password:
                     choice=menu(emp_no,cur)
                     if choice=="1":

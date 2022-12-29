@@ -22,6 +22,9 @@ def ep3(conn,cur):
             print("That account number does not exist.")
         else :
             results1=results[0]
+            acc_type=results1[1]
+            if acc_type == 'S': acc_type="savings"
+            if acc_type == 'C': acc_type="current"
             first_name=results1[2]
             last_name=results1[3]
             print(first_name,last_name,"found.")
@@ -32,10 +35,16 @@ def ep3(conn,cur):
             if choice == "Y":
                 query="delete from clients where acc_no = %s"
                 data=(acc_no,)
+                query2="delete from {} where acc_no = %s".format(acc_type)
+                data2=(acc_no,)
                 done=dataentering.tableupdate(conn,cur,query,data)
                 if done:
-                    print("Deleted {} {}'s account.".format(first_name,last_name))
-                    break
+                    done2=dataentering.tableupdate(conn,cur,query2,data2)
+                    if done2:
+                        print("Deleted {} {}'s account.".format(first_name,last_name))
+                        break
+                    else:
+                        print("Deletion from {} table was unsuccessful".format(acc_type))
                 else:
                     print("Deletion was unsuccessful")
             else:
