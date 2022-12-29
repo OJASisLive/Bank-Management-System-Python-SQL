@@ -45,4 +45,31 @@ def ep1(query,cur):
     
     done=dataentering.tableupdate(query,cur,add_client,data_client)
     if done:
+        if acc_type=='S':
+            bank_balance=dataentering.balance()
+            add_savings=("INSERT INTO SAVINGS VALUES(%s,%s,'NO')")
+            data_savings=(acc_no,bank_balance)
+            done2=dataentering.tableupdate(query,cur,add_savings,data_savings)
+            if done2:
+                pass
+            else:
+                print("Unable to add to savings table.")
+                print("Deleting from main table.......")
+                delete_client=("delete from clients where acc_no = %s")
+                data_delete_client=(acc_no)
+                done=dataentering.tableupdate(query,cur,delete_client,data_delete_client)
+        else:
+            bank_balance=dataentering.balance()
+            add_current=("INSERT INTO current VALUES(%s,%s,'NO')")
+            data_current=(acc_no,bank_balance)
+            done2=dataentering.tableupdate(query,cur,add_current,data_current)
+            if done2:
+                pass
+            else:
+                print("Unable to add to savings table.")
+                print("Deleting from main table.......")
+                delete_client=("delete from clients where acc_no = %s")
+                data_delete_client=(acc_no)
+                done=dataentering.tableupdate(query,cur,delete_client,data_delete_client)
+
         print("Values added successfully!!")

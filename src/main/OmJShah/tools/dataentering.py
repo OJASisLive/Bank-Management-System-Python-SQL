@@ -219,6 +219,22 @@ def tableupdate(conn,cur,query,data):
         conn.commit()
     except mysql.connector.Error as err:
         print(err.msg)
-        print("-----------Value addition was unsuccessful!!!!-------------")
+        print("-----------Value addition/deletion was unsuccessful!!!!-------------")
     else:
         return bool(True)
+
+#bank balance 
+def balance():
+    while True:
+        bank_balance=input("Enter starting balance (min 1000 currency): ")
+        if len(bank_balance) >= 3:
+            try:
+                bank_balance=int(bank_balance)
+                print("Done OK")
+            except ValueError:
+                print("Balance should be an integer!!")
+            else:
+                if bank_balance>=1000:
+                    return bank_balance
+        else:
+            print("Minimum balance is 1000 currency")

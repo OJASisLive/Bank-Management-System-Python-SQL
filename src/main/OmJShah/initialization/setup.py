@@ -58,7 +58,7 @@ TABLES['current'] = (
     "CREATE TABLE `current` ("
     "  `acc_no` int(5) NOT NULL,"
     "  `balance` int NOT NULL,"
-    "  `overdraft` int NOT NULL,"
+    "  `overdraft` enum('YES','NO') NOT NULL,"
     "  PRIMARY KEY (`acc_no`),"
     ") "
 )
@@ -140,7 +140,7 @@ def querycheck():
                             print("already exists.")
                             existing+=1
                         else:
-                            print(err.msg())
+                            print(err.msg)
                     else:
                         print("OK")
             if existing==7:
