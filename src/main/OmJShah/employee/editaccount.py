@@ -1,6 +1,5 @@
 from datetime import date
 from tools import dataentering
-import mysql.connector
 
 acc_no=None
 first_name=None
@@ -23,7 +22,7 @@ def ep2(conn,cur):
         print("input ~ to quit")
         acc_no=input("Enter acc_no (max 5 int) to edit details: ")
         if acc_no=="~": break
-        if len(acc_no) <= 5:
+        elif len(acc_no) <= 5:
             try:
                 acc_no=int(acc_no)
                 print("Done OK")
@@ -34,7 +33,7 @@ def ep2(conn,cur):
         cur.execute("select * from clients where acc_no={}".format(acc_no))
         results=cur.fetchall()
         if len(results)==0:
-            print("That employee number does not exist.")
+            print("That account number does not exist.")
         else:
             results1=results[0]
             first_name=results1[2]

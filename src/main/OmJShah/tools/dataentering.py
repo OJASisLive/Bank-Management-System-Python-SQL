@@ -73,7 +73,6 @@ def birthdate(person,minage,maxage):
         else:
             if age(birth_date)>=minage and age(birth_date)<=maxage:
                 return birth_date
-                break
             else:
                 if age(birth_date)<minage:
                     print("{} must be atleast {} years of age!!".format(person,minage))

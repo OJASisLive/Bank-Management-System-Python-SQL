@@ -1,21 +1,24 @@
 from employee import createaccount
 from employee import editaccount
+from employee import deleteaccount
+from employee import showaccounts
 
 def ep(conn,cur):
     print("\nWelcome employee!!")
     print("Please log in with your creds (emp_id and password):")
-
-    while True:
-        print("---------------------Employee Panel--------------------")
-        print("1.Employee login.")
-        print("2.Quit.")
-        ch = input("Enter your choice:")
-        if ch == "1":
-            print("------------login panel-------------")
-        elif ch == "2":
-            break
-        else:
-            print("Wrong input!!!(1 or 2 only)")
+    print("---------------------Employee Panel--------------------")
+    print("1.Employee login.")
+    print("2.Quit.")
+    ch = input("Enter your choice:")
+    logged_in= bool(False)
+    if ch == "1":
+        print("------------login panel-------------")
+        logged_in=bool(True)
+    elif ch == "2":
+        pass
+    else:
+        print("Wrong input!!!(1 or 2 only)")
+    if logged_in:
         while True:
             emp_no=input("Enter emp_no (max 5 int): ")
             if len(emp_no) <= 5:
@@ -36,7 +39,8 @@ def ep(conn,cur):
         else:
             while True:
                 password=record[0][1]
-                a=input("Enter your password:")
+                a=input("\nEnter your password to continue:")
+                print("Input ~ to quit.")
                 if a==password:
                     choice=menu(emp_no,cur)
                     if choice=="1":
@@ -44,13 +48,14 @@ def ep(conn,cur):
                     elif choice=="2":
                         editaccount.ep2(conn,cur)
                     elif choice=="3":
-                        break
+                        deleteaccount.ep3(conn,cur)
                     elif choice=="4":
-                        break
+                        showaccounts.ep4(cur)
                     elif choice=="0":
                         break
                     else:
                         print("Wrong input!")
+                elif a == "~" : break
                 else:
                     print("Wrong password!!")
                     break

@@ -1,4 +1,3 @@
-import mysql.connector
 from datetime import date
 from tools import dataentering
 

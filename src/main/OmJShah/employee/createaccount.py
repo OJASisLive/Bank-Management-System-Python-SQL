@@ -1,5 +1,4 @@
 from tools import dataentering
-import mysql.connector
 
 def ep1(query,cur):
     print("-------------Create account Process-------------")
