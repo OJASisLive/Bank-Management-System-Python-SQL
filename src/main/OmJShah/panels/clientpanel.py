@@ -1,4 +1,6 @@
 from tools import dataentering
+from client import redeemcode
+from client import depositmoney
 def cp(conn,cur):
     print("\n------------------Client Panel------------------")
     print("Welcome client!!")
@@ -26,11 +28,12 @@ def cmenu(conn,cur,acc_no,acc_type):
     print("1.Show Balance")
     print("2.Deposit money")
     print("3.Withdraw money")
+    print("4.Redeem Code")
     if acc_type=='savings':
-        print("4.Ask for loan")
-        print("5.Check loan status")
+        print("5.Ask for loan")
+        print("6.Check loan status")
     else:
-        print("4.Check overdraft status")
+        print("5.Check overdraft status")
     print("~ to quit")
     choice=input("Enter your choice: ")
     if choice=="~": pass
@@ -40,11 +43,11 @@ def cmenu(conn,cur,acc_no,acc_type):
         print("Your balance is: ",balance[0][0])
         print()
     elif choice=="2":
-        pass
+        depositmoney.cp2(conn,cur,acc_type,acc_no)
     elif choice=="3":
         pass
     elif choice=="4":
-        pass
+        redeemcode.cp4(conn,cur,acc_type,acc_no)
     elif choice=="5":
         pass
     else:

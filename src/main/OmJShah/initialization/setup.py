@@ -85,6 +85,14 @@ TABLES['overdraft']=(
     ") "
 )
 
+TABLES['cash_in_hand']=(
+    "CREATE TABLE `cash_in_hand` ("
+    "  `acc_no` int(5) NOT NULL,"
+    "  `cash_in_hand` int NOT NULL,"
+    "  PRIMARY KEY (`acc_no`)"
+    ") "
+)
+
 
 ############################################################################################
 query=""
@@ -143,7 +151,7 @@ def querycheck():
                             print(err.msg)
                     else:
                         print("OK")
-            if existing==7:
+            if existing==8:
                 with open("firsttime.txt","w") as f:
                     f.write("False")
                 ans=True

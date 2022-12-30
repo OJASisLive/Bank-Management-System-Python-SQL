@@ -237,3 +237,31 @@ def balance():
                     return bank_balance
         else:
             print("Minimum balance is 1000 currency")
+
+#Withdraw amount and Deposit amount
+def amounts(deposit_or_withdraw,cash_in_hand,acc_type):
+    while True:
+        print()
+        print("--------------------{} screen-------------------")
+        amt=input("Enter amount to {}: ".format(deposit_or_withdraw))
+        try:
+            amt=int(amt)
+            print("Done OK")
+        except ValueError:
+            print("{} amount should be an integer!!".format(deposit_or_withdraw))
+        else:
+            if amt<cash_in_hand:
+                return amt
+            else:
+                if deposit_or_withdraw=="withdraw":
+                    if acc_type=="current":
+                        overdraft=amt-cash_in_hand
+                        if (overdraft) <= 50000:
+                            return amt,overdraft,bool(True)
+                        else:
+                            return bool(False)
+                    else:
+                        print("You do not have enough balance\n")
+                else:
+                    print("You do not have sufficient cash_in_hand\n")
+                    return bool(False)
