@@ -1,4 +1,7 @@
-# NOTICE:
+# LATEST NOTICE:
+See [this pull request](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/pull/6) for details about merger of ["shorten-the-code"](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/tree/shorten-the-code) branch into the main branch.
+
+# OLD NOTICE:
 Further updates would be pushed on the ["shorten-the-code"](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/tree/shorten-the-code) branch where I am planning to shorten the code by
 removing duplicate code and referencing them.
 
