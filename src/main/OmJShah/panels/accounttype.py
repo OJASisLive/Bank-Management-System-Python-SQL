@@ -1,12 +1,13 @@
 from panels import adminpanel
 from panels import employeepanel
+from panels import clientpanel
 def acctype(query,cur):
     while True:
         print("--------------Account Selector Menu--------------")
         print("1.Admin.")
         print("2.Employee.")
         print("3.Client.")
-        print("Enter 0 to end process.")
+        print("Enter ~ to end process.")
         a=input("\nEnter your account type:")
         
         if a=='1':
@@ -24,9 +25,9 @@ def acctype(query,cur):
                 print("\nWrong password!\n")
         
         elif a=='3':
-            return 3
+            clientpanel.cp(query,cur)
         
-        elif a=='0':
+        elif a=='~':
             print("\nShutting down the program.")
             break
         

@@ -9,7 +9,7 @@ def ap1(query,cur):
 #Employee Birth date
     birth_date=dataentering.birthdate("employee",20,60)
 #Employee name
-    first_name,last_name=dataentering.name()
+    first_name,last_name=dataentering.fname(),dataentering.lname()
 #Employee Gender
     gender=dataentering.gender()
 #Employee hire date

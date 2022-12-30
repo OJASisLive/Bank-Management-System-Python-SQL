@@ -19,7 +19,7 @@ def age(birthdate):
 def ep2(conn,cur):
     global acc_no,first_name,last_name,gender,birth_date,acc_creation_date,mobile_no,email_id,password
     while True:
-        print("input ~ to quit")
+        print("\ninput ~ to quit")
         acc_no=input("Enter acc_no (max 5 int) to edit details: ")
         if acc_no=="~": break
         elif len(acc_no) <= 5:
@@ -45,13 +45,13 @@ def ep2(conn,cur):
             email_id=results1[8]
             password=results1[9]
 
-            print("1. first_name",first_name)
-            print("2. last_name",last_name)
-            print("3. gender",gender)
-            print("4. birth_date",birth_date)
-            print("5. account_creation_date",acc_creation_date)
-            print("6. mobile_no",mobile_no)
-            print("7. email_id",email_id)
+            print("1. first_name            = ",first_name)
+            print("2. last_name             = ",last_name)
+            print("3. gender                = ",gender)
+            print("4. birth_date            = ",birth_date)
+            print("5. account_creation_date = ",acc_creation_date)
+            print("6. mobile_no             = ",mobile_no)
+            print("7. email_id              = ",email_id)
             print("8. password")
             print("0 to quit")
             ep2f2(conn,cur)
@@ -132,6 +132,7 @@ def ep2f2(conn,cur):
             print("1.Show Password")
             print("2.Change Password")
             print("0 to quit")
+            choice=input("Enter choice: ")
             if choice == "1":
                 print("\nThe password will be printed on the next line")
                 print(password)

@@ -19,7 +19,6 @@ def primary_key_no(x):
                 print("{} should be an integer!!".format(x))
             else:
                 return emp_no
-                break
         else:
             print("Maximum length is 5!")
 
@@ -174,7 +173,7 @@ def date2(person,birth_date,hire_or_creation,minage,maxage):
 
 def mobileno():
     while True:
-        mobile_no_str=input("Enter mobile no. (7 to 15 int)") 
+        mobile_no_str=input("Enter mobile no. (7 to 15 int): ") 
         mobile_no=mobile_no_str 
         #Thanks to the international phone numbering plan (ITU-T E. 164), 
         #phone numbers cannot contain more than 15 digits. The shortest 
@@ -194,7 +193,7 @@ def mobileno():
 
 def email():
     while True:
-        email_id=input("Enter client Email ID (max 25 char):")
+        email_id=input("Enter client Email ID (max 25 char): ")
         if len(email_id)<26:
             break
         else:

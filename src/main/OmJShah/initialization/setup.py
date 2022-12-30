@@ -40,7 +40,7 @@ TABLES['empass'] = (
     "CREATE TABLE `empass` ("
     "  `emp_no` int(5) NOT NULL,"
     "  `pass` varchar(8) NOT NULL,"
-    "  PRIMARY KEY (`emp_no`),"
+    "  PRIMARY KEY (`emp_no`)"
     ") "
 )
 
@@ -50,7 +50,7 @@ TABLES['savings'] = (
     "  `acc_no` int(5) NOT NULL,"
     "  `balance` int NOT NULL,"
     "  `loan` enum('YES','NO') NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
@@ -59,7 +59,7 @@ TABLES['current'] = (
     "  `acc_no` int(5) NOT NULL,"
     "  `balance` int NOT NULL,"
     "  `overdraft` enum('YES','NO') NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
@@ -72,7 +72,7 @@ TABLES['loan'] = (
     "  `iterest_perc_per_annum` int(1) NOT NULL,"
     "  `amt-per-month` int NOT NULL,"
     "  `remaining_amt` int NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
@@ -81,7 +81,7 @@ TABLES['overdraft']=(
     "  `acc_no` int(5) NOT NULL,"
     "  `overdraft_amt` int NOT NULL,"
     "  `od_with_interest_remaining` int NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
