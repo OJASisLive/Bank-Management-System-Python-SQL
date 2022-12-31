@@ -1,6 +1,9 @@
 from tools import dataentering
 from client import redeemcode
 from client import depositmoney
+from client import withdrawmoney
+from client import loan_od
+from client import transfermoney
 def cp(conn,cur):
     print("\n------------------Client Panel------------------")
     print("Welcome client!!")
@@ -25,15 +28,18 @@ def cp(conn,cur):
                 print("Wrong password")
             
 def cmenu(conn,cur,acc_no,acc_type):
+    cash_in_hand=dataentering.handcash(conn,cur,acc_no)
+    print("\n Your Cash_In_Hand is {} currency".format(cash_in_hand))
+    print()
     print("1.Show Balance")
     print("2.Deposit money")
     print("3.Withdraw money")
     print("4.Redeem Code")
     if acc_type=='savings':
-        print("5.Ask for loan")
-        print("6.Check loan status")
+        print("5.Ask for loan / Check loan status")
     else:
         print("5.Check overdraft status")
+    print("6.Transfer money to other account")
     print("~ to quit")
     choice=input("Enter your choice: ")
     if choice=="~": pass
@@ -45,10 +51,15 @@ def cmenu(conn,cur,acc_no,acc_type):
     elif choice=="2":
         depositmoney.cp2(conn,cur,acc_type,acc_no)
     elif choice=="3":
-        pass
+        withdrawmoney.cp3(conn,cur,acc_type,acc_no)
     elif choice=="4":
         redeemcode.cp4(conn,cur,acc_type,acc_no)
     elif choice=="5":
-        pass
+        loan_od.cp5(conn,cur,acc_type,acc_no)
+    elif choice=="6":
+        cur.execute("select balance from {} where acc_no={}".format(acc_type,acc_no))
+        balance=cur.fetchall()
+        balance=balance[0][0]
+        transfermoney.cp6(conn,cur,acc_type,acc_no,balance)
     else:
         print("Wrong input!!!!\n")

@@ -168,7 +168,7 @@ def date2(person,birth_date,hire_or_creation,minage,maxage):
             elif age(birth_date)-age(hire_date)>=minage:
                 break
             else:
-                print("{} must atleast be {} years of age!!".format(person,maxage))
+                print("{} must atleast be {} years of age!!".format(person,minage))
     return hire_date
 
 def mobileno():
@@ -239,29 +239,47 @@ def balance():
             print("Minimum balance is 1000 currency")
 
 #Withdraw amount and Deposit amount
-def amounts(deposit_or_withdraw,cash_in_hand,acc_type):
+def amounts(deposit_or_withdraw_or_transfer,cash_in_hand_or_balance,acc_type):
     while True:
         print()
-        print("--------------------{} screen-------------------")
-        amt=input("Enter amount to {}: ".format(deposit_or_withdraw))
+        print("--------------------{} screen-------------------".format(deposit_or_withdraw_or_transfer))
+        amt=input("Enter amount to {}: ".format(deposit_or_withdraw_or_transfer))
         try:
             amt=int(amt)
             print("Done OK")
         except ValueError:
-            print("{} amount should be an integer!!".format(deposit_or_withdraw))
+            print("{} amount should be an integer!!".format(deposit_or_withdraw_or_transfer))
         else:
-            if amt<cash_in_hand:
-                return amt
+            if amt<=cash_in_hand_or_balance:
+                return amt,None
             else:
-                if deposit_or_withdraw=="withdraw":
+                if deposit_or_withdraw_or_transfer=="transfer":
                     if acc_type=="current":
-                        overdraft=amt-cash_in_hand
+                        overdraft=amt-cash_in_hand_or_balance
                         if (overdraft) <= 50000:
-                            return amt,overdraft,bool(True)
+                            return amt,overdraft
                         else:
-                            return bool(False)
+                            return bool(False),None
                     else:
                         print("You do not have enough balance\n")
                 else:
-                    print("You do not have sufficient cash_in_hand\n")
-                    return bool(False)
+                    if deposit_or_withdraw_or_transfer=="deposit":
+                        print("You do not have sufficient cash_in_hand\n")
+                    else:
+                        print("You do not have enough balance\n")
+                    return bool(False),None
+
+def handcash(conn,cur,acc_no):
+    cur.execute("select cash_in_hand from cash_in_hand where acc_no={}".format(acc_no))
+    cash_in_hand=cur.fetchall()
+    if cash_in_hand==[]:
+        query="insert into cash_in_hand values(%s,0)"
+        data=(acc_no,)
+        done=tableupdate(conn,cur,query,data)
+        if done:
+            cash_in_hand=0
+        else:
+            print("Unable to figure out your cash in hand values.")
+    else:
+        cash_in_hand=cash_in_hand[0][0]
+    return cash_in_hand

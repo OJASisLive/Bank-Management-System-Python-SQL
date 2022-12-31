@@ -5,7 +5,7 @@ def cc():
     global cur
     global conn
     if not check.check():
-        cred = open("cred.dat","rb")
+        cred = open("files//cred.dat","rb")
         dat=pickle.load(cred)
         cred.close()
         Passwo=dat[0]

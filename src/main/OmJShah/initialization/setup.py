@@ -100,7 +100,7 @@ Password=""
 Database=""
 def sqlpwd():
     global Password
-    cred = open("cred.dat","rb")
+    cred = open("files//cred.dat","rb")
     dat=pickle.load(cred)
     cred.close()
     Password=dat[0]
@@ -108,7 +108,7 @@ def sqlpwd():
 
 def sqldb():
     global Database
-    cred = open("cred.dat","rb")
+    cred = open("files//cred.dat","rb")
     dat=pickle.load(cred)
     cred.close()
     Database=dat[1]
@@ -152,7 +152,7 @@ def querycheck():
                     else:
                         print("OK")
             if existing==8:
-                with open("firsttime.txt","w") as f:
+                with open("files//firsttime.txt","w") as f:
                     f.write("False")
                 ans=True
         
@@ -167,7 +167,7 @@ def mysqlsetup():
     print("Create a database in your MYSQL Workbench.\n")
     Database=input("Enter database name: ")
     Password=input("Enter sql password (enter '' if nothing):")
-    cred2= open("cred.dat","wb")
+    cred2= open("files//cred.dat","wb")
     data=[Password,Database]
     pickle.dump(data,cred2)
     cred2.close()
