@@ -55,7 +55,7 @@ def cmenu(conn,cur,acc_no,acc_type):
     elif choice=="4":
         redeemcode.cp4(conn,cur,acc_type,acc_no)
     elif choice=="5":
-        loan_od.cp5(conn,cur,acc_type,acc_no)
+        loan_od.cp5(cur,acc_type,acc_no)
     elif choice=="6":
         cur.execute("select balance from {} where acc_no={}".format(acc_type,acc_no))
         balance=cur.fetchall()
