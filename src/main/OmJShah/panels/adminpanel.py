@@ -1,9 +1,8 @@
-import hireemployee
-import fireemployee
-import editemployee
-import showemployee
-
-def ap():
+from admin import hireemployee
+from admin import fireemployee
+from admin import editemployee
+from admin import showemployee
+def ap(query,conn):
     print("\nWelcome Admin!!")
     
     while True:
@@ -15,13 +14,13 @@ def ap():
         print("\nInput 0 to quit.")
         a=input("Enter choice:")
         if a=='1':
-            hireemployee.ap1()
+            hireemployee.ap1(query,conn)
         elif a=='2':
-            fireemployee.ap2()
+            fireemployee.ap2(query,conn)
         elif a=='3':
-            editemployee.ap3()
+            editemployee.ap3(query,conn)
         elif a=='4':
-            showemployee.ap4()
+            showemployee.ap4(conn)
         elif a=='0':
             print("Quit Admin Panel.")
             break

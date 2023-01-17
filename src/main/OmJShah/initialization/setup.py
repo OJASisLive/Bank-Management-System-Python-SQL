@@ -1,4 +1,4 @@
-import check
+from initialization import check
 
 import pickle
 import mysql.connector
@@ -23,13 +23,13 @@ TABLES['employees'] = (
 
 TABLES['clients'] = (
     "CREATE TABLE `clients` ("
-    "  `acc_no` int(5) NOT NULL PRIMARY KEY,"
-    "  `acc_type` enum('S','C') NOT NULL,"
+    "  `acc_no` int NOT NULL PRIMARY KEY,"
+    "  `type` enum('S','C') NOT NULL,"
     "  `first_name` varchar(15) NOT NULL,"
     "  `last_name` varchar(15) NOT NULL,"
     "  `gender` enum('M','F') NOT NULL,"
     "  `birth_date` date NOT NULL,"
-    "  `acc_creation_date` date NOT NULL,"
+    "  `accd` date NOT NULL,"
     "  `mobile_no` varchar(20) NOT NULL,"
     "  `email_id` varchar(25) NOT NULL,"
     "  `pass` varchar(8) NOT NULL"
@@ -40,8 +40,7 @@ TABLES['empass'] = (
     "CREATE TABLE `empass` ("
     "  `emp_no` int(5) NOT NULL,"
     "  `pass` varchar(8) NOT NULL,"
-    "  PRIMARY KEY (`emp_no`),"
-    "  FOREIGN KEY(`emp_no`) REFERENCES employees(emp_no)"
+    "  PRIMARY KEY (`emp_no`)"
     ") "
 )
 
@@ -51,8 +50,7 @@ TABLES['savings'] = (
     "  `acc_no` int(5) NOT NULL,"
     "  `balance` int NOT NULL,"
     "  `loan` enum('YES','NO') NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
@@ -60,9 +58,8 @@ TABLES['current'] = (
     "CREATE TABLE `current` ("
     "  `acc_no` int(5) NOT NULL,"
     "  `balance` int NOT NULL,"
-    "  `overdraft` int NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
+    "  `overdraft` enum('YES','NO') NOT NULL,"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
@@ -75,8 +72,7 @@ TABLES['loan'] = (
     "  `iterest_perc_per_annum` int(1) NOT NULL,"
     "  `amt-per-month` int NOT NULL,"
     "  `remaining_amt` int NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
@@ -85,8 +81,15 @@ TABLES['overdraft']=(
     "  `acc_no` int(5) NOT NULL,"
     "  `overdraft_amt` int NOT NULL,"
     "  `od_with_interest_remaining` int NOT NULL,"
-    "  PRIMARY KEY (`acc_no`),"
-    "  FOREIGN KEY(`acc_no`) REFERENCES clients(acc_no)"
+    "  PRIMARY KEY (`acc_no`)"
+    ") "
+)
+
+TABLES['cash_in_hand']=(
+    "CREATE TABLE `cash_in_hand` ("
+    "  `acc_no` int(5) NOT NULL,"
+    "  `cash_in_hand` int NOT NULL,"
+    "  PRIMARY KEY (`acc_no`)"
     ") "
 )
 
@@ -97,7 +100,7 @@ Password=""
 Database=""
 def sqlpwd():
     global Password
-    cred = open("cred.dat","rb")
+    cred = open("files//cred.dat","rb")
     dat=pickle.load(cred)
     cred.close()
     Password=dat[0]
@@ -105,7 +108,7 @@ def sqlpwd():
 
 def sqldb():
     global Database
-    cred = open("cred.dat","rb")
+    cred = open("files//cred.dat","rb")
     dat=pickle.load(cred)
     cred.close()
     Database=dat[1]
@@ -145,11 +148,11 @@ def querycheck():
                             print("already exists.")
                             existing+=1
                         else:
-                            print(err.msg())
+                            print(err.msg)
                     else:
                         print("OK")
-            if existing==7:
-                with open("firsttime.txt","w") as f:
+            if existing==8:
+                with open("files//firsttime.txt","w") as f:
                     f.write("False")
                 ans=True
         
@@ -164,7 +167,7 @@ def mysqlsetup():
     print("Create a database in your MYSQL Workbench.\n")
     Database=input("Enter database name: ")
     Password=input("Enter sql password (enter '' if nothing):")
-    cred2= open("cred.dat","wb")
+    cred2= open("files//cred.dat","wb")
     data=[Password,Database]
     pickle.dump(data,cred2)
     cred2.close()
