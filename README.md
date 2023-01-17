@@ -20,15 +20,15 @@ Run the file named "main.py" and follow the instructions of the program...
 Open the file named "firsttime.txt" and change the value from False to True (case sensitive)
 
 # Troubleshooting:
-1.I suspect that the people who haven't set a password for SQL may encounter an error. (will fix it later)
+1. I suspect that the people who haven't set a password for SQL may encounter an error. (will fix it later)
+   
+   I strongly suggest users to have a password set in MySQL.
 
-I strongly suggest users to have a password set in MySQL.
+2. Check if the terminal shows the message "Connection established successfully"
 
-2.Check if the terminal shows the message "Connection established successfully"
+   That means you entered your credentials properly
 
-That means you entered your credentials properly
-
-3.Any other exception will pop up in the terminal...
+3. Any other exception will pop up in the terminal...
 
 # More information/Structure/Wiki
 [Wiki](https://github.com/OJASisLive/Bank-Management-System-Python-SQL/wiki)
