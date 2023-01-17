@@ -53,10 +53,13 @@ def f2(conn,cur):
     if a == '1':
         en=dataentering.primary_key_no("emp_no")
         query="update employees set emp_no=%s where emp_no=%s"
+        query2="update empass set emp_no=%s where emp_no=%s"
         data=(en,emp_no)
         done=dataentering.tableupdate(conn,cur,query,data)
         if done:
-            print("Updated employee number...")
+            done=dataentering.tableupdate(conn,cur,query2,data)
+            if done:
+                print("Updated employee number...")
 
     if a == '2':
         birth_date=dataentering.birthdate("employee",20,60)
