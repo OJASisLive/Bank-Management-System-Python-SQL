@@ -187,13 +187,13 @@ def setup():
         ans2=input("How do you want to store the data? (1/2): ")
         if ans2 == "0":
             break
-        if ans2=="1":
+        elif ans2=="1":
             mysqlsetup()
             if existing==7:
                 continue
-        if ans2=="2":
+        elif ans2=="2":
             print("\nThis is under development :). Please use mysql till then...")
-        elif ans2 != "1" or ans2 != "2":
+        else:
             print("\nWrong input, (1/2).........")
     else: 
         if querycheck():
